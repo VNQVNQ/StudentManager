@@ -2,7 +2,7 @@ import model.Student;
 import service.StudentService;
 
 import java.util.Scanner;
-
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -53,9 +53,35 @@ public class Main {
                         System.out.println("Student not found.");
                     }
                     break;
+
+                case 3:
+                    System.out.print("Enter name to search: ");
+                    String searchName = sc.nextLine();
+                    List<Student> results = service.searchByName(searchName);
+                    if (results.isEmpty()) {
+                        System.out.println("No students found.");
+                    } else {
+                        for (Student s : results) {
+                            System.out.println(s);
+                        }
+                    }
+                    break;
+
+                case 4:
+                    System.out.printf("%-10s %-30s %-5s\n", "ID", "Full Name", "GPA");
+                    for (Student s : service.getAllStudents()) {
+                        System.out.println(s);
+                    }
+                    break;
+
+                case 5:
+                    System.out.println("Goodbye!");
+                    sc.close();
+                    return;
+
+                default:
+                    System.out.println("Invalid option. Please try again.");
             }
-            sc.close();
         }
-        
     }
 }
