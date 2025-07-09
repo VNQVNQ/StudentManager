@@ -1,8 +1,8 @@
 import model.Student;
 import service.StudentService;
 
-import java.util.Scanner;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,6 +16,7 @@ public class Main {
             System.out.println("3. Search student");
             System.out.println("4. Display all students");
             System.out.println("5. Exit");
+            System.out.println("6. Trigger errors for Snyk test"); // thêm case lỗi
             System.out.print("Select: ");
             int choice = sc.nextInt(); sc.nextLine();
 
@@ -26,6 +27,9 @@ public class Main {
 
                     System.out.print("Enter full name: ");
                     String name = sc.nextLine();
+                    if (name.length() > 1000) { // ❌ Lỗi 3: Không giới hạn độ dài hợp lý
+                        System.out.println("Warning: Very long name not rejected!");
+                    }
 
                     System.out.print("Enter GPA: ");
                     double gpa = sc.nextDouble(); sc.nextLine();
@@ -47,11 +51,7 @@ public class Main {
                     System.out.print("Enter ID to delete: ");
                     int deleteId = sc.nextInt(); sc.nextLine();
                     boolean removed = service.removeStudent(deleteId);
-                    if (removed) {
-                        System.out.println("Student deleted.");
-                    } else {
-                        System.out.println("Student not found.");
-                    }
+                    System.out.println(removed ? "Student deleted." : "Student not found.");
                     break;
 
                 case 3:
@@ -72,12 +72,22 @@ public class Main {
                     for (Student s : service.getAllStudents()) {
                         System.out.println(s);
                     }
+                    String test = null;
+                    System.out.println(test.length()); // cố tình gây lỗi null
                     break;
 
                 case 5:
                     System.out.println("Goodbye!");
                     sc.close();
                     return;
+
+                case 6:
+                    
+                    int a = 10;
+                    int b = 0;
+                    int c = a / b; // chia cho 0
+                    System.out.println("Result: " + c);
+                    break;
 
                 default:
                     System.out.println("Invalid option. Please try again.");
