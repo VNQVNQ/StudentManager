@@ -30,9 +30,6 @@ public class Main {
                     System.out.println("Goodbye!");
                     sc.close();
                     return;
-                case 6:
-                    triggerErrors();
-                    break;
                 default:
                     System.out.println("Invalid option.");
             }
@@ -40,13 +37,12 @@ public class Main {
     }
 
     private static void printMenu() {
-        System.out.println("\n===== STUDENT MANAGER PROGRAM =====");
+        System.out.println("\n===== STUDENT MANAGER =====");
         System.out.println("1. Add student");
         System.out.println("2. Delete student");
         System.out.println("3. Search student");
         System.out.println("4. Display all students");
         System.out.println("5. Exit");
-        System.out.println("6. Trigger Snyk Errors");
         System.out.print("Select: ");
     }
 
@@ -95,20 +91,4 @@ public class Main {
             System.out.println(s);
         }
     }
-
-    private static void triggerErrors() {
-    // Lỗi 1: Null pointer dereference
-    String value = null;
-    System.out.println(value.length());
-
-    // Lỗi 2: Division by zero
-    int a = 10;
-    int b = 0;
-    int result = a / b;
-    System.out.println("Result: " + result);
-
-    // Lỗi 3: Hardcoded sensitive data
-    String password = "admin123";
-    System.out.println("Password: " + password);
-}
 }
