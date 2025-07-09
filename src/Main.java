@@ -97,15 +97,18 @@ public class Main {
     }
 
     private static void triggerErrors() {
-        String value = null;
-        System.out.println(value.length());
+    // Lỗi 1: Null pointer dereference
+    String value = null;
+    System.out.println(value.length());
 
-        int a = 10;
-        int b = 0;
-        int result = a / b;
-        System.out.println("Result: " + result);
+    // Lỗi 2: Division by zero
+    int a = 10;
+    int b = 0;
+    int result = a / b;
+    System.out.println("Result: " + result);
 
-        String longName = "a".repeat(2000);
-        System.out.println("Student name: " + longName);
-    }
+    // Lỗi 3: Hardcoded sensitive data
+    String password = "admin123";
+    System.out.println("Password: " + password);
+}
 }
